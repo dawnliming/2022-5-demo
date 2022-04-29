@@ -11,8 +11,8 @@
           clearable></el-cascader>
     </div>
 
-    <div class="condition">
-      <div v-show="isShow" v-for="select in options2" :key="select.id" >
+    <div id="condition">
+      <div v-show="index>4?isShow:''" v-for="(select,index) in options2" :key="select.id" >
         <el-select v-model="value" clearable placeholder="请选择">
           <el-option
               v-for="item in options"
@@ -64,15 +64,34 @@ export default {
   },
   methods:{
     open(){
+      let i = 0
+      let test = document.getElementById('condition').children
       if(!this.openShow){
-        this.openShow = true
-      }else{
-        this.openShow = false
-      }
-      console.log(this.options2.length);
-      if(this.options2.length >= 6){
-        this.isShow = this.openShow
-      }
+        if (this.options2.length > 4){
+          for (i = 5; i < this.options2.length; i++){
+            test[i].style = 'display: none'
+          }
+        }
+          this.openShow = true
+        }else{
+        if (this.options2.length > 4){
+          for (i = 5; i < this.options2.length; i++){
+            test[i].style = 'display: block'
+          }
+        }
+          this.openShow = false
+        }
+
+
+      // if(!this.openShow){
+      //   this.openShow = true
+      // }else{
+      //   this.openShow = false
+      // }
+      // console.log(this.options2.length);
+      // if(this.options2.length >= 6){
+      //   this.isShow = this.openShow
+      // }
     },
 
   }
@@ -88,7 +107,7 @@ export default {
     width: 200px;
     margin-right: 30px;
   }
-  .condition{
+  #condition{
     display: flex;
     flex-wrap: wrap;
     flex: 1;
