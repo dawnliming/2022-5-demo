@@ -10,9 +10,8 @@
           collapse-tags
           clearable></el-cascader>
     </div>
-
     <div id="condition">
-      <div v-show="index>4?isShow:''" v-for="(select,index) in options2" :key="select.id" >
+      <div v-show="index > selectNumber ? openShow : true" v-for="(select,index) in options2" :key="index" >
         <el-select v-model="value" clearable placeholder="请选择">
           <el-option
               v-for="item in options"
@@ -57,43 +56,29 @@ export default {
         { value: 7, label: '7' },
       ],
       value: '',
-      isShow: true,
       openShow: false, // 展开功能
-      newData: []
+      windowX: window.innerWidth,
+      minNumber: 2
     }
+  },
+  computed:{
+    selectNumber(){
+      if (this.minNumber  >= Math.floor((this.windowX - 350) / 230 - 1)){
+        return this.minNumber
+      }else {
+        return Math.floor((this.windowX - 350) / 230 - 1)
+      }
+    },
   },
   methods:{
     open(){
-      let i = 0
-      let test = document.getElementById('condition').children
-      if(!this.openShow){
-        if (this.options2.length > 4){
-          for (i = 5; i < this.options2.length; i++){
-            test[i].style = 'display: none'
-          }
-        }
-          this.openShow = true
-        }else{
-        if (this.options2.length > 4){
-          for (i = 5; i < this.options2.length; i++){
-            test[i].style = 'display: block'
-          }
-        }
-          this.openShow = false
-        }
-
-
-      // if(!this.openShow){
-      //   this.openShow = true
-      // }else{
-      //   this.openShow = false
-      // }
-      // console.log(this.options2.length);
-      // if(this.options2.length >= 6){
-      //   this.isShow = this.openShow
-      // }
+      this.openShow = !this.openShow;
     },
-
+  },
+  mounted(){
+    window.onresize = ()=>{
+      return this.windowX = window.innerWidth
+    }
   }
 }
 </script>
@@ -101,8 +86,9 @@ export default {
 <style lang="scss" scoped>
 .topnav {
   display: flex;
-  padding: 30px;
+  padding: 30px 30px 0 30px;
   background: wheat;
+  min-width: 1030px;
   .cascade{
     width: 200px;
     margin-right: 30px;
@@ -119,6 +105,7 @@ export default {
     display: flex;
     justify-content: right;
     flex: 0 0 30px;
+    margin-bottom: 30px;
   }
 }
 
