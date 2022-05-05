@@ -1,20 +1,20 @@
 <template>
   <div class="DataPanel">
-    <div v-if="false" class="defaultTable">
+    <div v-if="chooseD === '默认'" class="defaultTable">
       <div>数据表格</div>
     </div>
 
-    <div v-if="false" class="upAndDown">
+    <div v-if="chooseD === '上下'" class="upAndDown">
       <div class="up">上</div>
       <div class="down">下</div>
     </div>
 
-    <div v-if="false" class="leftAndRight">
+    <div v-if="chooseD === '左右'" class="leftAndRight">
       <div class="left">左</div>
       <div class="right">右</div>
     </div>
 
-    <div v-if="true" class="leftAndUpDown">
+    <div v-if="chooseD === '左-上下'" class="leftAndUpDown">
       <div class="left">左</div>
       <div class="upAndDown">
         <div class="up">上</div>
@@ -22,7 +22,7 @@
       </div>
     </div>
 
-    <div v-if="false" class="rightAndUpDown">
+    <div v-if="chooseD === '右-上下'" class="rightAndUpDown">
       <div class="upAndDown">
         <div class="up">上</div>
         <div class="down">下</div>
@@ -34,11 +34,8 @@
 
 <script>
 export default {
-  props: ['chooseD'],
   name: "DataPanel",
-  data(){
-
-  }
+  props: ['chooseD'],
 }
 </script>
 

@@ -12,7 +12,7 @@
     </div>
 
     <div id="condition">
-      <el-select v-model="choose" clearable placeholder="数据模板">
+      <el-select v-model="choose" placeholder="数据模板">
         <el-option
             v-for="item in chooses"
             :key="item.value"
@@ -43,6 +43,7 @@
 
 export default {
   name: "TopNav",
+  props: ['chooseD'],
   data() {
     return {
       props: { multiple: true },
@@ -63,14 +64,14 @@ export default {
         { value: 3, label: '3' },
       ],
       chooses:[
-        { value: 1, label: '默认'},
-        { value: 2, label: '上下'},
-        { value: 3, label: '左右'},
-        { value: 4, label: '左-上下'},
-        { value: 5, label: '右-上下'},
+        { value: '默认', label: '默认'},
+        { value: '上下', label: '上下'},
+        { value: '左右', label: '左右'},
+        { value: '左-上下', label: '左-上下'},
+        { value: '右-上下', label: '右-上下'},
       ],
       value: '',
-      choose:'',
+      choose: '',
       openShow: false, // 展开功能
       windowX: window.innerWidth,
       minNumber: 1
@@ -78,10 +79,10 @@ export default {
   },
   computed:{
     selectNumber(){
-      if (this.minNumber  >= Math.floor((this.windowX - 350) / 230 - 1)){
+      if (this.minNumber  >= Math.floor((this.windowX - 350) / 230 - 2)){
         return this.minNumber
       }else {
-        return Math.floor((this.windowX - 350) / 230 - 1)
+        return Math.floor((this.windowX - 350) / 230 - 2)
       }
     },
   },
@@ -93,6 +94,11 @@ export default {
   mounted(){
     window.onresize = ()=>{
       return this.windowX = window.innerWidth
+    }
+  },
+  watch:{
+    choose(){
+      this.$emit('update:chooseD', this.choose)
     }
   }
 }
