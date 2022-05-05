@@ -12,6 +12,10 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss">
+@import "src/styles/index.scss";
+#app {
+  margin: 14px;
+  min-width: 1030px;
+}
 </style>

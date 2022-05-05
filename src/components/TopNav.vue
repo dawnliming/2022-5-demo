@@ -10,7 +10,17 @@
           collapse-tags
           clearable></el-cascader>
     </div>
+
     <div id="condition">
+      <el-select v-model="choose" clearable placeholder="数据模板">
+        <el-option
+            v-for="item in chooses"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+        </el-option>
+      </el-select>
+
       <div v-show="index > selectNumber ? openShow : true" v-for="(select,index) in options2" :key="index" >
         <el-select v-model="value" clearable placeholder="请选择">
           <el-option
@@ -30,6 +40,7 @@
 </template>
 
 <script>
+
 export default {
   name: "TopNav",
   data() {
@@ -50,15 +61,19 @@ export default {
         { value: 1, label: '1' },
         { value: 2, label: '2' },
         { value: 3, label: '3' },
-        { value: 4, label: '4' },
-        { value: 5, label: '5' },
-        { value: 6, label: '6' },
-        { value: 7, label: '7' },
+      ],
+      chooses:[
+        { value: 1, label: '默认'},
+        { value: 2, label: '上下'},
+        { value: 3, label: '左右'},
+        { value: 4, label: '左-上下'},
+        { value: 5, label: '右-上下'},
       ],
       value: '',
+      choose:'',
       openShow: false, // 展开功能
       windowX: window.innerWidth,
-      minNumber: 2
+      minNumber: 1
     }
   },
   computed:{
@@ -88,7 +103,6 @@ export default {
   display: flex;
   padding: 30px 30px 0 30px;
   background: wheat;
-  min-width: 1030px;
   .cascade{
     width: 200px;
     margin-right: 30px;
