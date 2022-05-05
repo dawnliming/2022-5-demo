@@ -13,7 +13,7 @@ export default {
   components: {DataPanel, TopNav},
   data(){
     return{
-      chooseD: '上下'
+      chooseD: '默认'
     }
   }
 }
