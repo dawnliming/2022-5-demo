@@ -41,7 +41,6 @@ export default {
 
 <style lang="scss" scoped>
   .DataPanel{
-    border: 1px solid blue;
     width: 100%;
     height: 100vh;
     display: flex;

@@ -34,7 +34,7 @@
     </div>
 
     <el-col class="toggle"  >
-      <el-button type="text" size="small" @click="open">{{ !openShow?'展开':'收起' }}<i :class="[ !openShow?'el-icon-arrow-down':'el-icon-arrow-up', 'el-icon--right']"></i></el-button>
+      <el-button v-show="selectNumber+1<options2.length" type="text" size="small" @click="open">{{ !openShow?'展开':'收起' }}<i :class="[ !openShow?'el-icon-arrow-down':'el-icon-arrow-up', 'el-icon--right']"></i></el-button>
     </el-col>
   </div>
 </template>
@@ -58,11 +58,7 @@ export default {
         { value: 8, label: '8' },
         { value: 9, label: '9' },
       ],
-      options2: [
-        { value: 1, label: '1' },
-        { value: 2, label: '2' },
-        { value: 3, label: '3' },
-      ],
+      options2: [],
       chooses:[
         { value: '默认', label: '默认'},
         { value: '上下', label: '上下'},
@@ -72,7 +68,7 @@ export default {
       ],
       value: '',
       choose: '',
-      openShow: false, // 展开功能
+      openShow: true, // 展开功能
       windowX: window.innerWidth,
       minNumber: 1
     }
