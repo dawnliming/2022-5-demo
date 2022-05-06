@@ -1,6 +1,6 @@
 <template>
   <div class="DataPanel">
-    <div v-if="chooseD === '默认'" class="defaultTable">
+    <div v-if="chooseD === '默认'" class="defaultTable" key="1">
       <e-chart
           :option="defaultTable.option"
           :dataset="defaultTable.dataset"
@@ -10,7 +10,7 @@
       />
     </div>
 
-    <div v-if="chooseD === '上下'" class="upAndDown">
+    <div v-if="chooseD === '上下'" class="upAndDown" key="2">
       <div class="up">
         <e-chart
             :option="defaultTable.option"
@@ -31,7 +31,7 @@
       </div>
     </div>
 
-    <div v-if="chooseD === '左右'" class="leftAndRight">
+    <div v-if="chooseD === '左右'" class="leftAndRight" key="3">
       <div class="left">
         <e-chart
             :option="leftAndRight.option"
@@ -52,7 +52,7 @@
       </div>
     </div>
 
-    <div v-if="chooseD === '左-上下'" class="leftAndUpDown">
+    <div v-if="chooseD === '左-上下'" class="leftAndUpDown" key="4">
       <div class="left">
         <e-chart
             :option="leftAndRight.option"
@@ -84,7 +84,7 @@
       </div>
     </div>
 
-    <div v-if="chooseD === '右-上下'" class="rightAndUpDown">
+    <div v-if="chooseD === '右-上下'" class="rightAndUpDown" key="5">
       <div class="upAndDown">
         <div class="up">
           <e-chart
@@ -314,12 +314,12 @@ export default {
     > .upAndDown{
       display: flex;
       flex-direction: column;
-      overflow: hidden;
+      flex: 1;
       .up{
         background-color: RGB(157,195,230);
-        flex: 1;
-        width: 100vw;
+        width: 100%;
         margin-bottom: 7px;
+        flex: 1;
       }
       .down{
         background-color: RGB(157,195,230);
@@ -329,10 +329,10 @@ export default {
 
     > .leftAndRight{
       display: flex;
-      overflow: hidden;
+      flex: 1;
       .left{
         background-color: RGB(157,195,230);
-        width: 100vw;
+        width: 100%;
         margin-right: 7px;
         flex: 1;
       }
@@ -344,16 +344,16 @@ export default {
 
     > .leftAndUpDown{
       display: flex;
-      overflow: hidden;
+      flex: 1;
       .left{
         background-color: RGB(157,195,230);
-        width: 50vw;
+        width: 50%;
         margin-right: 7px;
       }
       .upAndDown{
         display: flex;
         flex-direction: column;
-        width: 50vw;
+        width: 50%;
         .up{
           background-color: RGB(157,195,230);
           flex: 1;
@@ -368,11 +368,11 @@ export default {
 
     > .rightAndUpDown{
       display: flex;
-      overflow: hidden;
+      flex: 1;
       .upAndDown{
         display: flex;
         flex-direction: column;
-        width: 50vw;
+        width: 50%;
         .up{
           background-color: RGB(157,195,230);
           flex: 1;
@@ -385,7 +385,7 @@ export default {
       }
       .right{
         background-color: RGB(157,195,230);
-        width: 50vw;
+        width: 50%;
         margin-left: 7px;
       }
     }

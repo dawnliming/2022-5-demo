@@ -63,7 +63,6 @@ export default {
 
       // 让图表随着屏幕大小自适应
       window.addEventListener("resize", function() {
-        console.log(123)
         myChart.resize()
       })
     }
