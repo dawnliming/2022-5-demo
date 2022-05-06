@@ -15,7 +15,7 @@ export default {
 <style lang="scss">
 @import "src/styles/index.scss";
 #app {
-  margin: 14px;
+  padding: 14px;
   min-width: 1030px;
 }
 </style>

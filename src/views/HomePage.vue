@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="height: 100%">
     <TopNav :chooseD.sync="chooseD" class="topNav" />
     <DataPanel :chooseD.sync="chooseD" />
   </div>
