@@ -20,11 +20,10 @@
             height="100%"
         />
       </div>
-      <div class="down">
+      <div class="down" >
         <el-table
             :data="tableData"
-            style="width: 80%; left: 10%; top: 20%;"
-            height="250">
+            height="100%">
           <el-table-column
               fixed
               prop="date"
@@ -372,6 +371,20 @@ export default {
         city: '普陀区',
         address: '上海市普陀区金沙江路 1518 弄',
         zip: 200333
+      }, {
+        date: '2016-05-06',
+        name: '王小虎',
+        province: '上海',
+        city: '普陀区',
+        address: '上海市普陀区金沙江路 1518 弄',
+        zip: 200333
+      }, {
+        date: '2016-05-07',
+        name: '王小虎',
+        province: '上海',
+        city: '普陀区',
+        address: '上海市普陀区金沙江路 1518 弄',
+        zip: 200333
       }],
       tableData1: [
         {
@@ -468,12 +481,13 @@ export default {
       flex: 1;
       .up{
         background-color: RGB(157,195,230);
-        width: 100%;
         margin-bottom: 7px;
         flex: 1;
       }
       .down{
         background-color: RGB(157,195,230);
+        padding: 10px;
+        overflow: hidden;
         flex: 1;
       }
     }
@@ -483,7 +497,6 @@ export default {
       flex: 1;
       .left{
         background-color: RGB(157,195,230);
-        width: 100%;
         margin-right: 7px;
         flex: 1;
       }
@@ -498,7 +511,7 @@ export default {
       flex: 1;
       .left{
         background-color: RGB(157,195,230);
-        width: 50%;
+        flex: 1;
         margin-right: 7px;
       }
       .upAndDown{
@@ -531,12 +544,14 @@ export default {
         }
         .down{
           background-color: RGB(157,195,230);
+          padding: 10px;
+          overflow: hidden;
           flex: 1;
         }
       }
       .right{
         background-color: RGB(157,195,230);
-        width: 50%;
+        flex: 1;
         margin-left: 7px;
       }
     }
