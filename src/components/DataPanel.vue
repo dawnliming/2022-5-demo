@@ -21,13 +21,42 @@
         />
       </div>
       <div class="down">
-        <e-chart
-            :option="defaultTable.option"
-            :dataset="defaultTable.dataset"
-            :series="defaultTable.series"
-            width="100%"
-            height="100%"
-        />
+        <el-table
+            :data="tableData"
+            style="width: 80%; left: 10%; top: 20%;"
+            height="250">
+          <el-table-column
+              fixed
+              prop="date"
+              label="日期"
+              width="150">
+          </el-table-column>
+          <el-table-column
+              prop="name"
+              label="姓名"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="province"
+              label="省份"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="city"
+              label="市区"
+              width="120">
+          </el-table-column>
+          <el-table-column
+              prop="address"
+              label="地址"
+              width="300">
+          </el-table-column>
+          <el-table-column
+              prop="zip"
+              label="邮编"
+              width="120">
+          </el-table-column>
+        </el-table>
       </div>
     </div>
 
@@ -96,13 +125,16 @@
           />
         </div>
         <div class="down">
-          <e-chart
-              :option="down.option"
-              :dataset="down.dataset"
-              :series="down.series"
-              width="100%"
+          <el-table
+              :data="tableData1"
               height="100%"
-          />
+              :header-cell-style="{height: '30px',padding: '0',color: '#fff',background: '#000',textAlign: 'center'}"
+              :cell-style="{textAlign: 'center',padding: '0'}"
+              style=""
+              border>
+            <el-table-column prop="time" label="小时" :resizable="false" sortable></el-table-column>
+            <el-table-column prop="number" label="人数" :resizable="false" sortable></el-table-column>
+          </el-table>
         </div>
       </div>
       <div class="right">
@@ -291,7 +323,126 @@ export default {
           ]
         },
       },
-
+      tableData: [{
+        date: '2016-05-03',
+        name: '王小虎',
+        province: '上海',
+        city: '普陀区',
+        address: '上海市普陀区金沙江路 1518 弄',
+        zip: 200333
+      }, {
+        date: '2016-05-02',
+        name: '王小虎',
+        province: '上海',
+        city: '普陀区',
+        address: '上海市普陀区金沙江路 1518 弄',
+        zip: 200333
+      }, {
+        date: '2016-05-04',
+        name: '王小虎',
+        province: '上海',
+        city: '普陀区',
+        address: '上海市普陀区金沙江路 1518 弄',
+        zip: 200333
+      }, {
+        date: '2016-05-01',
+        name: '王小虎',
+        province: '上海',
+        city: '普陀区',
+        address: '上海市普陀区金沙江路 1518 弄',
+        zip: 200333
+      }, {
+        date: '2016-05-08',
+        name: '王小虎',
+        province: '上海',
+        city: '普陀区',
+        address: '上海市普陀区金沙江路 1518 弄',
+        zip: 200333
+      }, {
+        date: '2016-05-06',
+        name: '王小虎',
+        province: '上海',
+        city: '普陀区',
+        address: '上海市普陀区金沙江路 1518 弄',
+        zip: 200333
+      }, {
+        date: '2016-05-07',
+        name: '王小虎',
+        province: '上海',
+        city: '普陀区',
+        address: '上海市普陀区金沙江路 1518 弄',
+        zip: 200333
+      }],
+      tableData1: [
+        {
+          time: '07',
+          number: '896835'
+        },
+        {
+          time: '08',
+          number: '2151934'
+        },
+        {
+          time: '09',
+          number: '1240759'
+        },
+        {
+          time: '10',
+          number: '4003273'
+        },
+        {
+          time: '11',
+          number: '4421532'
+        },
+        {
+          time: '12',
+          number: '3817391'
+        },
+        {
+          time: '13',
+          number: '3973673'
+        },
+        {
+          time: '14',
+          number: '4512445'
+        },
+        {
+          time: '15',
+          number: '647000'
+        },
+        {
+          time: '16',
+          number: '1865446'
+        },
+        {
+          time: '17',
+          number: '3404623'
+        },
+        {
+          time: '18',
+          number: '2598297'
+        },
+        {
+          time: '19',
+          number: '4803130'
+        },
+        {
+          time: '20',
+          number: '2747134'
+        },
+        {
+          time: '21',
+          number: '509599'
+        },
+        {
+          time: '22',
+          number: '2518148'
+        },
+        {
+          time: '23',
+          number: '896835'
+        }
+      ],
     }
   },
   methods:{
