@@ -14,8 +14,6 @@ const store = new Vuex.Store({
             { value: '右-上下', label: '右-上下'},
         ],
         options: [
-            { value: '数据模板', label: '数据模板' },
-            { value: '任务名称', label: '任务名称' },
             { value: '主源节点数', label: '主源节点数' },
             { value: '次源节点数', label: '次源节点数' },
             { value: '已建立映射数', label: '已建立映射数' },

@@ -17,5 +17,5 @@ export default {
 #app {
   padding: 14px;
   min-width: 1145px;
-}
+}::-webkit-scrollbar {display:none}
 </style>

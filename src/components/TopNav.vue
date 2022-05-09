@@ -1,5 +1,5 @@
 <template>
-  <div class="topnav">
+  <div id="topnav">
     <div class="cascade" >
       <span>主数据源：</span>
       <el-cascader
@@ -13,7 +13,7 @@
           clearable></el-cascader>
     </div>
 
-    <div class="choose" v-show="isShow('数据模板')">
+    <div class="choose" >
       <span>数据模板：</span>
       <el-select size="mini" v-model="choose" placeholder="数据模板">
         <el-option
@@ -25,7 +25,7 @@
       </el-select>
     </div>
 
-    <div class="task" v-show="isShow('任务名称')">
+    <div class="task">
       <span >任务名称：</span>
       <el-input size="mini" v-model="input" placeholder="请输入内容"></el-input>
     </div>
@@ -60,7 +60,7 @@
     </div>
 
     <el-col class="toggle"  >
-      <el-button v-show="selectNumber<options2.length" type="text" size="small" @click="open">{{ !openShow?'展开':'收起' }}<i :class="[ !openShow?'el-icon-arrow-down':'el-icon-arrow-up', 'el-icon--right']"></i></el-button>
+      <el-button v-show="topnavH >= 100 || options2.length > 0" type="text" size="small" @click="open">{{ !openShow?'展开':'收起' }}<i :class="[ !openShow?'el-icon-arrow-down':'el-icon-arrow-up', 'el-icon--right']"></i></el-button>
     </el-col>
   </div>
 </template>
@@ -72,29 +72,37 @@ export default {
   props: ['chooseD'],
   data() {
     return {
-      props: { multiple: true },
-      options2: [],
-      choose: '',
-      input: '',
       openShow: true, // 展开功能
       windowX: window.innerWidth,
-      minNumber: 1,
+      topnavH: '',
+
+      choose: '',
+      input: '',
       value1: '',
+      props: { multiple: true },
+      options2: [],
     }
   },
   computed:{
-    selectNumber(){
-      if (this.minNumber  >= Math.floor((this.windowX - 350) / 230 - 2)){
-        return this.minNumber
-      }else {
-        return Math.floor((this.windowX - 350) / 230 - 2)
-      }
-    },
     chooses(){
       return this.$store.state.chooses
     },
     options(){
       return this.$store.state.options
+    },
+  },
+  mounted(){
+    window.onresize = ()=>{
+      return this.windowX = window.innerWidth
+    }
+  },
+  updated() {
+    // 获取并更新topnav的高度
+    this.topnavH = document.getElementById('topnav').offsetHeight
+  },
+  watch:{
+    choose(){
+      this.$emit('update:chooseD', this.choose)
     },
   },
   methods:{
@@ -105,21 +113,11 @@ export default {
       return  this.options2.toString().indexOf(string) > -1 ? this.openShow : false
     }
   },
-  mounted(){
-    window.onresize = ()=>{
-      return this.windowX = window.innerWidth
-    }
-  },
-  watch:{
-    choose(){
-      this.$emit('update:chooseD', this.choose)
-    },
-  }
 }
 </script>
 
 <style lang="scss" scoped>
-.topnav {
+#topnav {
   display: flex;
   padding: 10px 10px 0 10px;
   background: wheat;
@@ -146,12 +144,11 @@ export default {
     width: 45%
   }
 
+  position: relative;
   .toggle{
-    display: flex;
-    justify-content: right;
-    align-items: center;
+    position: absolute;
     width: 44px;
-    margin-left: auto;
+    right: 0;
   }
 }
 
