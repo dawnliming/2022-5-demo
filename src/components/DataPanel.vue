@@ -146,7 +146,7 @@
 </template>
 
 <script>
-
+import DP from './DP.js'
 import EChart from "@/components/Echarts/eChart";
 export default {
   name: "DataPanel",
@@ -154,22 +154,22 @@ export default {
   props: ['chooseD'],
   computed:{
     defaultTable(){
-      return this.$store.state.defaultTable
+      return DP.defaultTable
     },
     leftAndRight(){
-      return this.$store.state.leftAndRight
+      return DP.leftAndRight
     },
     up(){
-      return this.$store.state.up
+      return DP.up
     },
     down(){
-      return this.$store.state.down
+      return DP.down
     },
     tableData(){
-      return this.$store.state.tableData.tableData
+      return DP.tableData.tableData
     },
     tableData1(){
-      return this.$store.state.tableData1.tableData1
+      return DP.tableData1.tableData1
     }
   },
   data(){

@@ -66,6 +66,7 @@
 </template>
 
 <script>
+import TN from './TN.json'
 
 export default {
   name: "TopNav",
@@ -85,10 +86,10 @@ export default {
   },
   computed:{
     chooses(){
-      return this.$store.state.chooses
+      return TN.chooses
     },
     options(){
-      return this.$store.state.options
+      return TN.options
     },
   },
   mounted(){

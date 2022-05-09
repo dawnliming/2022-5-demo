@@ -1,0 +1,15 @@
+{
+  "options": [
+    { "value": "主源节点数", "label": "主源节点数" },
+    { "value": "次源节点数", "label": "次源节点数" },
+    { "value": "已建立映射数", "label": "已建立映射数" },
+    { "value": "创建时间", "label": "创建时间" }
+  ],
+  "chooses":[
+    { "value": "默认", "label": "默认"},
+    { "value": "上下", "label": "上下"},
+    { "value": "左右", "label": "左右"},
+    { "value": "左-上下", "label": "左-上下"},
+    { "value": "右-上下", "label": "右-上下"}
+  ]
+}
