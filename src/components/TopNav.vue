@@ -1,8 +1,10 @@
 <template>
   <div class="topnav">
-    <div >
+    <div class="cascade" >
+      <span>主数据源：</span>
       <el-cascader
-          class="cascade"
+          style="width: 100%"
+          size="mini"
           placeholder="多选条件"
           v-model="options2"
           :options="options"
@@ -10,9 +12,9 @@
           collapse-tags
           clearable></el-cascader>
     </div>
-
-    <div id="condition">
-      <el-select v-model="choose" placeholder="数据模板">
+    <div class="choose" v-show="isShow('数据模板')">
+      <span>数据模板：</span>
+      <el-select size="mini" v-model="choose" placeholder="数据模板">
         <el-option
             v-for="item in chooses"
             :key="item.value"
@@ -20,16 +22,34 @@
             :value="item.value">
         </el-option>
       </el-select>
-
-      <div v-show="index > selectNumber ? openShow : true" v-for="(select,index) in options2" :key="index" >
-        <el-select v-model="value" clearable placeholder="请选择">
-          <el-option
-              v-for="item in options"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value">
-          </el-option>
-        </el-select>
+    </div>
+    <div class="task" v-show="isShow('任务名称')">
+      <span >任务名称：</span>
+      <el-input size="mini" v-model="input" placeholder="请输入内容"></el-input>
+    </div>
+    <div class="mainNodes" v-show="isShow('主源节点数')">
+      <span>主源节点数：</span>
+      <el-input size="mini" v-model="input" placeholder="请输入内容" />-<el-input size="mini" v-model="input" placeholder="请输入内容" />
+    </div>
+    <div class="secondNodes" v-show="isShow('次源节点数')">
+      <span>次源节点数：</span>
+      <el-input size="mini" v-model="input" placeholder="请输入内容" />-<el-input size="mini" v-model="input" placeholder="请输入内容" />
+    </div>
+    <div class="mappings" v-show="isShow('已建立映射数')">
+      <span>已建立映射数：</span>
+      <el-input size="mini" v-model="input" placeholder="请输入内容" />-<el-input size="mini" v-model="input" placeholder="请输入内容" />
+    </div>
+    <div class="creatTime" v-show="isShow('创建时间')">
+      <span>创建时间：</span>
+      <div class="block">
+        <el-date-picker
+            size="mini"
+            v-model="value1"
+            type="daterange"
+            range-separator="至"
+            start-placeholder="开始日期"
+            end-placeholder="结束日期">
+        </el-date-picker>
       </div>
     </div>
 
@@ -50,9 +70,11 @@ export default {
       options2: [],
       value: '',
       choose: '',
+      input: '',
       openShow: true, // 展开功能
       windowX: window.innerWidth,
       minNumber: 1,
+      value1: '',
     }
   },
   computed:{
@@ -68,12 +90,15 @@ export default {
     },
     options(){
       return this.$store.state.options
-    }
+    },
   },
   methods:{
     open(){
       this.openShow = !this.openShow;
     },
+    isShow(string){
+      return  this.options2.toString().indexOf(string) > -1 ? this.openShow : false
+    }
   },
   mounted(){
     window.onresize = ()=>{
@@ -84,6 +109,9 @@ export default {
     choose(){
       this.$emit('update:chooseD', this.choose)
     },
+    options2(){
+      console.log(this.isShow);
+    }
   }
 }
 </script>
@@ -91,20 +119,32 @@ export default {
 <style lang="scss" scoped>
 .topnav {
   display: flex;
-  padding: 30px 30px 0 30px;
+  padding: 10px 10px 0 10px;
   background: wheat;
+  flex-wrap: wrap;
+  > *{
+    margin-right: 30px; margin-bottom: 30px;
+    display: flex;
+    white-space:nowrap;
+    align-items: center;
+  };
   .cascade{
-    width: 200px;
+    width: 25%;
     margin-right: 30px;
   }
-  #condition{
-    display: flex;
-    flex-wrap: wrap;
-    flex: 1;
-    > *{
-      margin-right: 30px; margin-bottom: 30px; width: 200px
-    }
- }
+  .task{
+    width: 30%
+  }
+  .mainNodes{
+    width: 40%
+  }
+  .secondNodes{
+    width: 40%
+  }
+  .mappings{
+    width: 45%
+  }
+
   .toggle{
     display: flex;
     justify-content: right;
